@@ -1,5 +1,10 @@
 class TasksController < ApplicationController
 
+
+  def index
+    @tasks = Task.all
+  end
+
   def create
     if !!params[:list_id]
       @task = Task.new(task_params)
@@ -13,7 +18,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find(id: params[:id])
+    @task = Task.find(params[:id])
     @task.update(task_params)
     render json: @task
   end
